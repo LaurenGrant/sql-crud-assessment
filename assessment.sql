@@ -20,7 +20,7 @@ CREATE TABLE licensees (
 -- Question 2. Add `Bishop, Caren, f, 63, 132, 1943-09-26, Brown, Black` into the table of licensees.
 
 INSERT INTO licensees(surname,given_name,gender,height,weight,dob,eye_color,hair_color)
-  VALUES ( 'Bishop', 'Caren', 'f', 63, 132, '1943-09-26', 'Brown', 'Black' )
+  VALUES ( 'Bishop', 'Caren', 'f', 63, 132, '1943-09-26', 'Brown', 'Black' );
 
 -- Question 3. Load the data from `data/licensees.csv` into the `licensees` table.
 
@@ -28,9 +28,12 @@ INSERT INTO licensees(surname,given_name,gender,height,weight,dob,eye_color,hair
 
 -- Question 4. Write a query to get all attributes of licensees with Hazel eye color and Brown or Black hair color.
 
-SELECT COUNT(*), eye_color, hair_color
+SELECT *
 FROM licensees
-WHERE eye_color AND hair_color = 'Brown' or 'Black';
+WHERE eye_color = 'Hazel'
+  AND hair_color IN ('Brown', 'Black');
+
+  -- I originally thought the or in the question needed to be in the Where clause. I see not it just needs a comma.
 
 -- additional source used http://www.tutorialspoint.com/sql/sql-and-or-clauses.htm
 
@@ -38,11 +41,16 @@ WHERE eye_color AND hair_color = 'Brown' or 'Black';
 
 UPDATE licensees
 SET height = height - 1
-WHERE surname AND given_name = 'Escobar', 'Marilynn' OR 'Whaley', 'Chris';
+WHERE surname = 'Escobar'
+  AND given_name = 'Marilynn'
+OR surname = 'Whaley'
+  AND given_name = 'Chris';
 
--- cannot find a resource that shows me how to look up multiple names that work properly. Do you have one that you can send me so I can redo these last questions?
 
 -- Question 6. Remove Dylan Rich and Teresita Myers from the table of licensees.
 
 DELETE FROM licensees
-WHERE surname AND given_name = 'Rich', 'Dylan' OR 'Myers', 'Teresita';
+WHERE surname = 'Rich'
+  AND given_name = 'Dylan'
+OR surname = 'Myers'
+  AND given_name = 'Teresita';
